@@ -25,42 +25,42 @@ module.exports = () => {
       swSrc: './src-sw.js',
       swDest: 'src-sw.js',
       }),
-      new WebpackPwaManifest({
-        fingerprints: false,
-        inject: true,
-        name: 'text-editor',
-        short_name: 'JATE',
-        description: 'Just Another Text Editor!',
-        background_color: '#225ca3',
-        theme_color: '#225ca3',
-        start_url: '/',
-        publicPath: '/',
-        icons: [
-          {
-            src: path.resolve('src/images/logo.png'),
-            sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('assets', 'icons'),
-          },
-        ],
-      }),
-    ],
-
-    module: {
-      // TODO: Add CSS loaders and babel to webpack.
-      rules: [
+    new WebpackPwaManifest({
+      fingerprints: false,
+      inject: true,
+      name: 'text-editor',
+      short_name: 'JATE',
+      description: 'Just Another Text Editor!',
+      background_color: '#225ca3',
+      theme_color: '#225ca3',
+      start_url: '/',
+      publicPath: '/',
+      icons: [
         {
-          test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          src: path.resolve('src/images/logo.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+          destination: path.join('assets', 'icons'),
         },
-        {
-          test: /\.m?js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime']
-            },
+      ],
+    }),
+  ],
+
+  module: {
+      // TODO: Add CSS loaders and babel to webpack.
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime']
+           },
           },
         },
       ],
